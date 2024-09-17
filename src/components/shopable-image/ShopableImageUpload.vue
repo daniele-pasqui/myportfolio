@@ -86,7 +86,7 @@ const onSubmit = async () => {
           aria-describedby="label"
         />
       </div>
-      <label for="price" class="form-label">Prezzo</label>
+      <label for="price" class="form-label">Price</label>
       <div class="input-group mb-3">
         <input
           v-model="price"
@@ -99,7 +99,7 @@ const onSubmit = async () => {
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">
-          Immagine
+          Image
           <span v-if="image"> ({{ image }}) </span>
         </label>
         <input class="form-control" type="file" id="image" @change="onFileChanged($event)" />

@@ -1,10 +1,5 @@
 <script lang="ts" setup>
 import { ref, toRefs, watch } from 'vue'
-import {
-  createShopableImage,
-  generateShopableImageThumb,
-  updateShopableImage
-} from '@/services/shopable-image.service'
 import { useToast } from 'vue-toast-notification'
 import { updateImage } from '@/services/image.service'
 
@@ -75,7 +70,7 @@ const onSubmit = async () => {
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">
-          Immagine
+          Image
           <span v-if="image"> ({{ image }}) </span>
         </label>
         <input class="form-control" type="file" id="image" @change="onFileChanged($event)" />

@@ -1,4 +1,4 @@
-import type { Order } from '@/types/order.type'
+import type { Order, OrderDetail } from '@/types/order.type'
 import { get, post } from './api.service'
 
 export const makeOrder = async () => {
@@ -26,6 +26,16 @@ export const getAllOrders = async (): Promise<Order[]> => {
     return body
   } else {
     throw new Error(body.message ?? 'Error retrieving orders')
+  }
+}
+
+export const getOrder = async (id: number): Promise<OrderDetail> => {
+  const response = await get('api/shop/orderdetail?id=' + id)
+  const body = await response.json()
+  if (response.ok) {
+    return body
+  } else {
+    throw new Error(body.message ?? 'Error retrieving order')
   }
 }
 

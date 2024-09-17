@@ -33,5 +33,8 @@ const showImage = () => {
 <style scoped>
 img {
   cursor: pointer;
+  max-width: fit-content;
+  height: auto;
+  margin: 0 auto;
 }
 </style>

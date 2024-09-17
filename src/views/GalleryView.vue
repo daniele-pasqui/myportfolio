@@ -28,13 +28,16 @@ watch(selectedWork, async (newWork) => {
 <template>
   <FullScreenLoadingSpinner v-if="loading" />
   <div v-else>
+    <div class="mb-5">
+      <h1>Gallery</h1>
+    </div>
     <div v-if="works.length > 0">
       <select v-model="selectedWork" class="form-select" aria-label="Default select example">
         <option v-for="work in works" :value="work.id" v-bind:key="work.id">
           {{ work.title }}
         </option>
       </select>
-      <div v-if="images">
+      <div v-if="images" class="mt-5">
         <div v-for="image in images" :key="image" class="col-md-2 px-4">
           <div class="card">
             <ThumbImage :id="image" :shopable="false" class="card-img-top" />

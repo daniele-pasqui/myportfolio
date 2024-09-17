@@ -5,13 +5,15 @@ import Swal from 'sweetalert2'
 import { deleteShopableImage, getAllShopableImages } from '@/services/shopable-image.service'
 import { useToast } from 'vue-toast-notification'
 import ThumbImage from '@/components/image/ThumbImage.vue'
+import ShopableImageUpload from '@/components/shopable-image/ShopableImageUpload.vue'
+import { OnClickOutside } from '@vueuse/components'
 
 const toast = useToast()
 const key = ref(0)
 const images = ref<ShopableImage[]>([])
 
 const showUploadModal = ref(false)
-const selectedShopableImage = ref<ShopableImage>()
+const selectedShopableImage = ref<ShopableImage | undefined>(undefined)
 
 const updateImage = (id: number) => {
   selectedShopableImage.value = images.value.find((image) => image.id === id)
@@ -58,24 +60,33 @@ onMounted(() => {
 <template>
   <h2 class="mb-3 d-flex mt-4">
     Images
-    <button class="btn btn-primary ms-auto" @click="uploadNewImage()">
+    <button class="btn btn-primary ms-auto" @click="uploadNewImage()" v-if="images.length > 0">
       <i class="bi bi-plus"></i>
     </button>
   </h2>
-  <div :key="key" class="row">
-    <div v-for="shopable in images" :key="shopable.id" class="col-md-2 px-4">
-      <div class="card">
-        <ThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
-        <div class="card-body">
-          <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
-          <button class="btn btn-primary mx-1" @click="updateImage(shopable.id)">
-            <i class="bi bi-pencil-fill"></i>
-          </button>
-          <button class="btn btn-danger mx-1" @click="deleteImage(shopable.id)">
-            <i class="bi bi-trash-fill"></i>
-          </button>
+  <div :key="key" class="row mt-5">
+    <div v-if="images.length > 0">
+      <div v-for="shopable in images" :key="shopable.id" class="col-md-2 px-4">
+        <div class="card">
+          <ThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
+            <button class="btn btn-primary mx-1" @click="updateImage(shopable.id)">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn btn-danger mx-1" @click="deleteImage(shopable.id)">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </div>
         </div>
       </div>
+    </div>
+    <div v-else class="d-flex align-items-center flex-column pt-5">
+      <i class="bi bi-images h1"></i>
+      <h3>No images found</h3>
+      <button class="btn btn-primary mt-3" @click="uploadNewImage()">
+        Upload your first image
+      </button>
     </div>
   </div>
   <div class="upload-modal" :class="{ 'd-none': !showUploadModal }">

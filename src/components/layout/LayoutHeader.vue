@@ -30,7 +30,7 @@ const onLogout = async () => {
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
-      <img src="@/assets/logo.svg" alt="logo" style="max-height: 30px" />
+      <img src="@/assets/logo.png" alt="logo" style="max-height: 30px" />
       <RouterLink to="/"> MyPortfolio </RouterLink>
       <button
         class="navbar-toggler"

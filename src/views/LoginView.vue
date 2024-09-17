@@ -29,7 +29,7 @@ const onSubmit = async () => {
 </script>
 <template>
   <div class="text-center">
-    <img src="@/assets/logo.svg" alt="logo" style="max-width: 100px" />
+    <img src="@/assets/logo.png" alt="logo" style="max-width: 100px" />
   </div>
   <form @submit.prevent="onSubmit" class="centered-form mt-5">
     <label for="username" class="form-label">Username</label>

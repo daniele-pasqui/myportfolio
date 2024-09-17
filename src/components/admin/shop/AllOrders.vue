@@ -25,8 +25,4 @@ onMounted(() => {
       <h3>No orders found</h3>
     </div>
   </div>
-  <div>
-    Tastino vedi dettagli: GET /api/shop/orderdetail?id=id<br />
-    e mostro tutti i dettagli dell'ordine (immagini)<br />
-  </div>
 </template>

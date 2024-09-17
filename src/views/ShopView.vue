@@ -41,7 +41,7 @@ const cartContainsImage = (shopable: ShopableImage) => {
       <button class="btn btn-primary mt-5">Your cart</button>
     </RouterLink>
   </div>
-  <div>
+  <div v-if="images.length > 0">
     <div v-for="shopable in images" :key="shopable.id" class="col-md-2 px-4">
       <div class="card">
         <ShopableThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
@@ -57,5 +57,9 @@ const cartContainsImage = (shopable: ShopableImage) => {
         </div>
       </div>
     </div>
+  </div>
+  <div v-else class="d-flex align-items-center flex-column pt-5">
+    <i class="bi bi-images h1"></i>
+    <h3>No images found</h3>
   </div>
 </template>
