@@ -37,27 +37,43 @@ const reset = async () => {
 }
 </script>
 <template>
-  <div v-if="images.length > 0">
-    <div class="row">
-      <div v-for="shopable in images" :key="shopable.id" class="col-md-2 px-4">
-        <div class="card">
-          <ShopableThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
+  <section class="inner-banner py-5">
+    <div class="w3l-breadcrumb py-lg-5">
+      <div class="container pt-sm-5 pt-4 pb-sm-4">
+        <h4 class="inner-text-title font-weight-bold pt-5">Cart</h4>
+        <ul class="breadcrumbs-custom-path pl-0">
+          <li>
+            <RouterLink to="/">Home</RouterLink>
+          </li>
+
+          <li class="active">&nbsp;> Cart</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="pt-5">
+    <div v-if="images.length > 0">
+      <div class="mb-4 d-flex justify-content-center">
+        <button class="btn btn-primary mx-1" @click="buy()">Complete order</button>
+        <button class="btn btn-secondary mx-1" @click="reset()">Reset</button>
+      </div>
+      <div class="row">
+        <div v-for="shopable in images" :key="shopable.id" class="col-md-4 px-4">
+          <div class="card">
+            <ShopableThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div>
-      <button class="btn btn-primary mx-1" @click="buy()">Acquista</button>
-      <button class="btn btn-secondary mx-1" @click="reset()">Reset</button>
+    <div v-else class="d-flex align-items-center flex-column pt-5">
+      <i class="bi bi-cart-x-fill h1"></i>
+      <h3>Your cart is empty</h3>
+      <RouterLink to="/orders">
+        <button class="btn btn-primary mt-5">My Orders</button>
+      </RouterLink>
     </div>
-  </div>
-  <div v-else class="d-flex align-items-center flex-column pt-5">
-    <i class="bi bi-cart-x-fill h1"></i>
-    <h3>Your cart is empty</h3>
-    <RouterLink to="/orders">
-      <button class="btn btn-primary mt-5">My Orders</button>
-    </RouterLink>
   </div>
 </template>

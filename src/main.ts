@@ -1,4 +1,5 @@
 import './assets/main.css'
+import './assets/starter.css'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'

@@ -35,31 +35,62 @@ const cartContainsImage = (shopable: ShopableImage) => {
 }
 </script>
 <template>
-  <div class="mb-5 d-flex align-items-center justify-content-between">
-    <h1>Shop</h1>
-    <RouterLink to="/cart" v-if="cartItemsCount > 0">
-      <button class="btn btn-primary mt-5">Your cart</button>
-    </RouterLink>
-  </div>
-  <div v-if="images.length > 0">
-    <div v-for="shopable in images" :key="shopable.id" class="col-md-2 px-4">
-      <div class="card">
-        <ShopableThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
-        <div class="card-body">
-          <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
-          <button
-            class="btn btn-primary mx-1"
-            @click="addToCart(shopable)"
-            :disabled="cartContainsImage(shopable)"
-          >
-            <i class="bi bi-cart-plus-fill"></i> Aggiungi al carrello
-          </button>
-        </div>
+  <section class="inner-banner py-5">
+    <div class="w3l-breadcrumb py-lg-5">
+      <div class="container pt-sm-5 pt-4 pb-sm-4">
+        <h4 class="inner-text-title font-weight-bold pt-5">Shop</h4>
+        <ul class="breadcrumbs-custom-path pl-0">
+          <li>
+            <RouterLink to="/">Home</RouterLink>
+          </li>
+
+          <li class="active">&nbsp;> Shop</li>
+        </ul>
       </div>
     </div>
-  </div>
-  <div v-else class="d-flex align-items-center flex-column pt-5">
-    <i class="bi bi-images h1"></i>
-    <h3>No images found</h3>
-  </div>
+  </section>
+  <section class="w3l-gallery py-5" id="gallery">
+    <div class="container py-md-5 py-4">
+      <div class="title-heading-w3 text-center mx-auto mb-sm-5 mb-4" style="max-width: 700px">
+        <h3 class="title-style">Shop</h3>
+      </div>
+      <div v-if="images.length > 0" class="row">
+        <div
+          v-for="shopable in images"
+          :key="shopable.id"
+          class="col-md-4 px-4"
+          style="display: grid; grid-auto-rows: 1fr"
+        >
+          <div class="card position-relative">
+            <ShopableThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
+            <div class="card-body position-absolute price">
+              <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
+            </div>
+          </div>
+          <div class="text-center mt-2">
+            <button
+              class="btn btn-primary"
+              @click="addToCart(shopable)"
+              :disabled="cartContainsImage(shopable)"
+            >
+              <i class="bi bi-cart-plus-fill"></i> Aggiungi al carrello
+            </button>
+          </div>
+        </div>
+      </div>
+      <div v-else class="d-flex align-items-center flex-column pt-5">
+        <i class="bi bi-images h1"></i>
+        <h3>No images found</h3>
+      </div>
+    </div>
+  </section>
 </template>
+
+<style scoped>
+.price {
+  width: 100%;
+  bottom: 0;
+  text-align: right;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+</style>

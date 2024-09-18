@@ -4,7 +4,8 @@ import { useAuthStore } from '@/stores/auth'
 import { useCartStore } from '@/stores/cart'
 import { RoleEnum } from '@/types/role.type'
 import { storeToRefs } from 'pinia'
-import { RouterLink, useRouter } from 'vue-router'
+import { watch } from 'vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { useToast } from 'vue-toast-notification'
 
 const authStore = useAuthStore()
@@ -16,11 +17,23 @@ const { cartItemsCount } = storeToRefs(cartStore)
 
 const toast = useToast()
 const router = useRouter()
+const route = useRoute()
+
+const closeNavbar = () => {
+  document.getElementsByClassName('navbar-toggler')[0].classList.add('collapsed')
+  document.getElementById('navbarSupportedContent')?.classList.add('collapse')
+  document.getElementById('navbarSupportedContent')?.classList.remove('show')
+}
+
+watch(route, (to) => {
+  closeNavbar()
+})
 
 const onLogout = async () => {
   try {
     await logout()
     resetAuth()
+    closeNavbar()
     router.push('/login')
   } catch (error: any) {
     toast.error(error.message)
@@ -41,7 +54,7 @@ const onLogout = async () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" style="background-color: transparent"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -57,8 +70,29 @@ const onLogout = async () => {
           <li class="nav-item" v-if="hasRole(RoleEnum.admin)">
             <RouterLink to="/admin/shop" class="nav-link"> ADMIN SHOP </RouterLink>
           </li>
+          <div v-if="isLoggedIn">
+            <li class="nav-item mt-4 d-block d-md-none border-top">
+              <RouterLink to="/profile" class="nav-link"> Profile </RouterLink>
+            </li>
+            <li class="nav-item d-block d-md-none">
+              <RouterLink to="/orders" class="nav-link"> My Orders </RouterLink>
+            </li>
+            <li class="nav-item d-block d-md-none">
+              <button class="btn btn-outlined-primary nav-link" @click="onLogout" type="button">
+                Logout <i class="bi bi-box-arrow-left h5"></i>
+              </button>
+            </li>
+          </div>
+          <div v-else>
+            <li class="nav-item d-block d-md-none">
+              <RouterLink to="/login" class="nav-link"> Accedi </RouterLink>
+            </li>
+            <li class="nav-item d-block d-md-none">
+              <RouterLink to="/registration" class="nav-link"> Registrati </RouterLink>
+            </li>
+          </div>
         </ul>
-        <div v-if="!isLoggedIn">
+        <div v-if="!isLoggedIn" class="d-none d-md-block">
           <RouterLink to="/login">
             <button class="btn btn-primary" type="button">Accedi</button>
           </RouterLink>
@@ -66,7 +100,7 @@ const onLogout = async () => {
             <button class="btn btn-outelined-primary" type="button">Registrati</button>
           </RouterLink>
         </div>
-        <div v-else class="d-flex align-items-center">
+        <div v-else class="align-items-center d-none d-md-flex">
           <div class="me-5">
             <RouterLink to="/cart" class="nav-link">
               <div>
@@ -75,7 +109,7 @@ const onLogout = async () => {
               </div>
             </RouterLink>
           </div>
-          <div class="dropdown">
+          <div class="dropdown d-none d-md-block">
             <a
               class="nav-link dropdown-toggle"
               href="#"

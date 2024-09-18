@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Header from './components/layout/LayoutHeader.vue'
+import Footer from './components/layout/LayoutFooter.vue'
 import { useAuthStore } from './stores/auth'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
@@ -26,4 +27,5 @@ onMounted(async () => {
   <main class="pb-5 mt-5 container">
     <RouterView />
   </main>
+  <Footer />
 </template>
