@@ -25,6 +25,7 @@ const addToCart = async (shopable: ShopableImage) => {
   try {
     await addImageToCart(shopable.id)
     addCartItem(shopable)
+    toast.success('Immagine aggiunta al carrello')
   } catch (error: any) {
     toast.error(error.message)
   }
@@ -62,16 +63,18 @@ const cartContainsImage = (shopable: ShopableImage) => {
           style="display: grid; grid-auto-rows: 1fr"
         >
           <div class="card position-relative">
-            <ShopableThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
+            <div class="image-container">
+              <ShopableThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
+            </div>
             <div class="card-body position-absolute price">
               <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
             </div>
           </div>
           <div class="text-center mt-2">
             <button
+              v-if="!cartContainsImage(shopable)"
               class="btn btn-primary"
               @click="addToCart(shopable)"
-              :disabled="cartContainsImage(shopable)"
             >
               <i class="bi bi-cart-plus-fill"></i> Aggiungi al carrello
             </button>
@@ -80,7 +83,7 @@ const cartContainsImage = (shopable: ShopableImage) => {
       </div>
       <div v-else class="d-flex align-items-center flex-column pt-5">
         <i class="bi bi-images h1"></i>
-        <h3>No images found</h3>
+        <h3>Nessuna immagine trovata</h3>
       </div>
     </div>
   </section>
@@ -92,5 +95,13 @@ const cartContainsImage = (shopable: ShopableImage) => {
   bottom: 0;
   text-align: right;
   background-color: rgba(255, 255, 255, 0.7);
+}
+.image-container {
+  height: 200px;
+}
+.image-container img {
+  max-height: 200px;
+  height: auto;
+  max-width: fit-content;
 }
 </style>

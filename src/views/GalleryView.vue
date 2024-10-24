@@ -35,7 +35,7 @@ watch(selectedWork, async (newWork) => {
             <RouterLink to="/">Home</RouterLink>
           </li>
 
-          <li class="active">&nbsp;> Gallery</li>
+          <li class="active">&nbsp;> Galleria </li>
         </ul>
       </div>
     </div>
@@ -61,14 +61,14 @@ watch(selectedWork, async (newWork) => {
           </div>
           <div v-else class="d-flex align-items-center flex-column pt-5">
             <i class="bi bi-images h1"></i>
-            <h3>No works found</h3>
-            Contact the administrator
+            <h3>Nessun lavoro visibile</h3>
+            Contatta l'amministratore
           </div>
         </div>
-        <div class="row">
-          <div v-if="images" class="mt-5">
-            <div v-for="image in images" :key="image" class="col-md-4 px-4">
-              <div class="card">
+        <div v-if="images" class="row mt-5">
+          <div v-for="image in images" :key="image" class="col-md-4 px-4">
+            <div class="card">
+              <div class="image-container">
                 <ThumbImage :id="image" :shopable="false" class="card-img-top" />
               </div>
             </div>
@@ -78,3 +78,15 @@ watch(selectedWork, async (newWork) => {
     </section>
   </div>
 </template>
+
+<style scoped>
+.image-container {
+  height: 200px;
+  text-align: center;
+}
+.image-container img {
+  max-height: 200px;
+  height: auto;
+  max-width: fit-content;
+}
+</style>

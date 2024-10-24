@@ -17,12 +17,12 @@ onMounted(() => {
 <template>
   <div class="mt-4">
     <div v-if="orders.length > 0">
-      <h2 class="mb-5">Orders</h2>
+      <h2 class="mb-5">Ordini</h2>
       <OrdersList :orders="orders" :show-hash="true" />
     </div>
     <div v-else class="d-flex align-items-center flex-column pt-5">
       <i class="bi bi-shop h1"></i>
-      <h3>No orders found</h3>
+      <h3>Nessun ordine trovato</h3>
     </div>
   </div>
 </template>

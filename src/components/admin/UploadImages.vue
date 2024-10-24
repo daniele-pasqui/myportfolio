@@ -35,7 +35,7 @@ const saveImages = async () => {
     await uploadImages(selectedWork.value, images.value)
     await generateImageThumb(selectedWork.value)
     images.value = []
-    toast.success('Images uploaded')
+    toast.success('Immagini caricata con successo')
     emitter?.emit('work-images-saved')
   }
 }
@@ -52,7 +52,7 @@ emitter?.on('work-saved', loadWorks)
 </script>
 
 <template>
-  <h2 class="mt-4">Add images</h2>
+  <h2 class="mt-4">Aggiungi immagini</h2>
   <div class="mt-4">
     <div v-if="works.length > 0">
       <UploadImage @image-uploaded="onImageUpload" />
@@ -60,9 +60,9 @@ emitter?.on('work-saved', loadWorks)
         <table class="table table-striped mt-5">
           <thead>
             <tr>
-              <th scope="col">Label</th>
+              <th scope="col">Etichetta</th>
               <th scope="col">URL</th>
-              <th scope="col">Thumb URL</th>
+              <th scope="col">URL Thumbnail</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -85,13 +85,13 @@ emitter?.on('work-saved', loadWorks)
               {{ work.title }}
             </option>
           </select>
-          <button class="btn btn-primary" @click="saveImages">Save</button>
+          <button class="btn btn-primary" @click="saveImages">Salva</button>
         </div>
       </div>
     </div>
     <div v-else class="d-flex align-items-center flex-column pt-5">
       <i class="bi bi-images h1"></i>
-      <h3>No works found</h3>
+      <h3>Nessun lavoro trovato</h3>
     </div>
   </div>
 </template>

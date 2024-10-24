@@ -7,7 +7,7 @@ export const addImageToCart = async (imageId: number): Promise<Cart> => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error adding the image to the cart')
+    throw new Error(body.message ?? 'Si è verificato un errore durante l\'aggiunta dell\'immagine al carrello')
   }
 }
 
@@ -17,7 +17,7 @@ export const getCart = async (): Promise<Cart> => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error retrieving the cart')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il recupero del carrello')
   }
 }
 
@@ -25,6 +25,6 @@ export const resetCart = async () => {
   const response = await destroy('api/cart/empty')
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error retrieving the cart')
+    throw new Error(body.message ?? 'Si è verificato un errore durante lo svuotamento del carrello')
   }
 }

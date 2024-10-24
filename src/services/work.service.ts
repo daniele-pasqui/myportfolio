@@ -12,7 +12,7 @@ export const getMyWorks = async (): Promise<Work[]> => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error retrieving the works')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il recupero dei lavori')
   }
 }
 
@@ -26,7 +26,7 @@ export const createWork = async (
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error creating the work')
+    throw new Error(body.message ?? 'Si è verificato un errore durante la creazione del lavoro')
   }
 }
 
@@ -39,7 +39,7 @@ export const updateWork = async (
   const response = await put('api/work?id=' + id, { title, company, completionDate })
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error updating the work')
+    throw new Error(body.message ?? 'Si è verificato un errore durante l\'aggiornamento del lavoro')
   }
 }
 
@@ -47,7 +47,7 @@ export const deleteWork = async (id: number) => {
   const response = await destroy('api/work?id=' + id)
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error deleting the work')
+    throw new Error(body.message ?? 'Si è verificato un errore durante l\'eliminazione del lavoro')
   }
 }
 
@@ -60,6 +60,6 @@ export const saveVisibleWorks = async (userId: number, works: number[]): Promise
   const response = await patch('api/work/visible-works?userId=' + userId, works)
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error saving visible works')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il salvataggio')
   }
 }

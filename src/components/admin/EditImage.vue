@@ -44,7 +44,7 @@ const onSubmit = async () => {
       imagesPath + image.value,
       imagesThumbPath + image.value
     )
-    toast.success('Image uploaded successfully')
+    toast.success('Immagine caricata con successo')
     emit('imageUploaded')
     image.value = null
     label.value = ''
@@ -55,9 +55,9 @@ const onSubmit = async () => {
 </script>
 <template>
   <div>
-    <h2>Update the image data</h2>
+    <h2>Aggiorna l'immagine</h2>
     <form @submit.prevent="onSubmit" class="centered-form mt-5">
-      <label for="label" class="form-label">Label</label>
+      <label for="label" class="form-label">Etichetta</label>
       <div class="input-group mb-3">
         <input
           v-model="label"
@@ -70,7 +70,7 @@ const onSubmit = async () => {
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">
-          Image
+          Immagine
           <span v-if="image"> ({{ image }}) </span>
         </label>
         <input class="form-control" type="file" id="image" @change="onFileChanged($event)" />

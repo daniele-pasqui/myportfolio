@@ -4,7 +4,7 @@
       <div class="container pt-md-5 pt-4">
         <div class="w3l-footer-text-style">
           <div class="footer-list-cont d-flex align-items-center justify-content-between mb-5">
-            <h6 class="foot-sub-title">Contact Us</h6>
+            <h6 class="foot-sub-title">Contattaci</h6>
             <div class="main-social-footer-29">
               <a href="#facebook" class="facebook"><i class="bi bi-facebook"></i></a>
               <a href="#twitter" class="twitter"><i class="bi bi-twitter"></i></a>

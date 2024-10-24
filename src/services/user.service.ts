@@ -27,6 +27,6 @@ export const updateUser = async (
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error updating info')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il salvataggio dei dati dell\'utente')
   }
 }

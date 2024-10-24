@@ -27,7 +27,7 @@ const savePermissions = async () => {
       .filter(([_, value]) => value)
       .map(([key, _]) => parseInt(key))
     await saveVisibleWorks(selectedUser.value, visibleWorks)
-    toast.success('Permissions saved')
+    toast.success('Permessi salvati con successo')
   }
 }
 
@@ -54,7 +54,7 @@ watch(selectedUser, (newUser) => {
 emitter?.on('work-saved', loadWorks)
 </script>
 <template>
-  <h2 class="mt-4">Manage visible works</h2>
+  <h2 class="mt-4">Gestisci la visibilit&agrave; dei lavori</h2>
   <div v-if="users.length > 0 && works.length > 0">
     <div class="d-flex align-items-center">
       <select class="form-select me-5" v-model="selectedUser">
@@ -62,15 +62,15 @@ emitter?.on('work-saved', loadWorks)
           {{ user.name }} {{ user.surname }}
         </option>
       </select>
-      <button class="btn btn-primary" @click="savePermissions">Save</button>
+      <button class="btn btn-primary" @click="savePermissions">Salva</button>
     </div>
     <table class="table table-striped mt-5" :key="selectedUser || 0" v-if="selectedUser">
       <thead>
         <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Company</th>
-          <th scope="col">Completion Date</th>
-          <th scope="col">Visible</th>
+          <th scope="col">Titolo</th>
+          <th scope="col">Azienda</th>
+          <th scope="col">Data di completamento</th>
+          <th scope="col">Visibile</th>
         </tr>
       </thead>
       <tbody>
@@ -93,10 +93,10 @@ emitter?.on('work-saved', loadWorks)
   </div>
   <div v-else-if="users.length === 0" class="d-flex align-items-center flex-column pt-5">
     <i class="bi bi-people-fill h1"></i>
-    <h3>No users found</h3>
+    <h3>Nessun utente trovato</h3>
   </div>
   <div v-else class="d-flex align-items-center flex-column pt-5 mt-4">
     <i class="bi bi-images h1"></i>
-    <h3>No works found</h3>
+    <h3>Nessun lavoro trovato</h3>
   </div>
 </template>

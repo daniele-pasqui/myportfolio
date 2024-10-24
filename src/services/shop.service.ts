@@ -5,7 +5,7 @@ export const makeOrder = async () => {
   const response = await post('api/shop')
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error making the order')
+    throw new Error(body.message ?? 'Si è verificato un errore durante la creazione dell\'ordine')
   }
 }
 
@@ -15,7 +15,7 @@ export const getMyOrders = async (): Promise<Order[]> => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error retrieving orders')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il recupero degli ordini')
   }
 }
 
@@ -25,7 +25,7 @@ export const getAllOrders = async (): Promise<Order[]> => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error retrieving orders')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il recupero degli ordini')
   }
 }
 
@@ -35,13 +35,13 @@ export const getOrder = async (id: number): Promise<OrderDetail> => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error retrieving order')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il recupero dell\'ordine')
   }
 }
 
 export const verifyHash = async (hash: string) => {
   const response = await post('api/shop/verify_hash?hash=' + hash)
   if (!response.ok) {
-    throw new Error('Invalid hash')
+    throw new Error('L\'hash inserito non è valido')
   }
 }

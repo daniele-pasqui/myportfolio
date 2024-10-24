@@ -22,7 +22,7 @@ const onSubmit = async () => {
       email: email.value,
       password: password.value
     })
-    toast.success('Registration completed successfully')
+    toast.success('Registrazione completata')
     router.push('/login')
   } catch (error: any) {
     toast.error(error.message)

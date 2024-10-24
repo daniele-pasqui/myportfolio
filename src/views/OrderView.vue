@@ -17,14 +17,14 @@ onMounted(async () => {
   <FullScreenLoadingSpinner v-if="loading" />
   <div v-else>
     <div v-if="orders.length > 0">
-      <h1 class="mb-5">My orders</h1>
+      <h1 class="mb-5">I miei ordini</h1>
       <OrdersList :orders="orders" />
     </div>
     <div v-else class="d-flex align-items-center flex-column pt-5">
       <i class="bi bi-shop h1"></i>
-      <h3>No orders found</h3>
+      <h3>Nessun ordine trovato</h3>
       <RouterLink to="/shop">
-        <button class="btn btn-primary mt-5">Place your first order</button>
+        <button class="btn btn-primary mt-5">Effettua il tuo primo ordine</button>
       </RouterLink>
     </div>
   </div>

@@ -32,7 +32,7 @@ const updateImage = (id: number) => {
 
 const destroyImage = async (id: number) => {
   await deleteImage(id)
-  toast.success('Image deleted successfully')
+  toast.success('Immagine cancellata con successo')
   images.value = images.value.filter((image) => image !== id)
 }
 
@@ -69,7 +69,7 @@ emitter?.on('work-images-saved', async () => {
 })
 </script>
 <template>
-  <h2 class="mt-4">Manage works</h2>
+  <h2 class="mt-4">Gestisci lavori</h2>
   <div class="mt-4">
     <select class="form-select" v-model="selectedWorkId" v-if="works.length > 0">
       <option v-for="work in works" :value="work.id" v-bind:key="work.id">
@@ -78,16 +78,18 @@ emitter?.on('work-images-saved', async () => {
     </select>
     <div v-else class="d-flex align-items-center flex-column pt-5">
       <i class="bi bi-images h1"></i>
-      <h3>No works found</h3>
+      <h3>Nessun lavoro trovato</h3>
     </div>
   </div>
   <div v-if="selectedWorkId">
     <WorkDetail :work="selectedWork" />
   </div>
-  <div v-if="images" class="row" :key="forceUpdate">
-    <div v-for="image in images" :key="image" class="col-md-2 px-4">
+  <div v-if="images" class="row mt-4" :key="forceUpdate">
+    <div v-for="image in images" :key="image" class="col-md-4 py-2 px-md-4 py-md-0">
       <div class="card">
-        <ThumbImage :id="image" :shopable="false" class="card-img-top" />
+        <div class="image-container">
+          <ThumbImage :id="image" :shopable="false" class="card-img-top" />
+        </div>
         <div class="card-body">
           <button class="btn btn-primary mx-1" @click="updateImage(image)">
             <i class="bi bi-pencil-fill"></i>
@@ -127,5 +129,14 @@ emitter?.on('work-images-saved', async () => {
   padding: 20px 40px;
   border-radius: 10px;
   cursor: default;
+}
+.image-container {
+  height: 200px;
+  text-align: center;
+}
+.image-container img {
+  max-height: 200px;
+  height: auto;
+  max-width: fit-content;
 }
 </style>

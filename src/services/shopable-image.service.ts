@@ -15,7 +15,7 @@ export const getAllShopableImages = async (): Promise<ShopableImage[]> => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error retrieving the images')
+    throw new Error(body.message ?? 'Si è verificato un errore durante il recupero delle immagini')
   }
 }
 
@@ -30,7 +30,7 @@ export const createShopableImage = async (
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error creating the image')
+    throw new Error(body.message ?? 'Si è verificato un errore durante la creazione dell\'immagine')
   }
 }
 
@@ -46,7 +46,7 @@ export const updateShopableImage = async (
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error updating the image')
+    throw new Error(body.message ?? 'Si è verificato un errore durante l\'aggiornamento dell\'immagine')
   }
 }
 
@@ -54,7 +54,7 @@ export const deleteShopableImage = async (id: number) => {
   const response = await destroy('api/shopableimage?id=' + id)
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error deleting the image')
+    throw new Error(body.message ?? 'Si è verificato un errore durante l\'eliminazione dell\'immagine')
   }
 }
 
@@ -62,6 +62,6 @@ export const generateShopableImageThumb = async () => {
   const response = await post('api/thumbnail?id=1')
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error during the thumbnail generation')
+    throw new Error(body.message ?? 'Si è verificato un errore durante la generazione dell\'immagine thumbnail')
   }
 }

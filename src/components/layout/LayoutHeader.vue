@@ -58,28 +58,28 @@ const onLogout = async () => {
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item" v-if="isLoggedIn">
-            <RouterLink to="/gallery" class="nav-link"> Gallery </RouterLink>
+          <li class="nav-item" v-if="!hasRole(RoleEnum.admin)">
+            <RouterLink to="/gallery" class="nav-link"> Galleria </RouterLink>
           </li>
-          <li class="nav-item" v-if="isLoggedIn">
+          <li class="nav-item" v-if="!hasRole(RoleEnum.admin)">
             <RouterLink to="/shop" class="nav-link"> Shop </RouterLink>
           </li>
           <li class="nav-item" v-if="hasRole(RoleEnum.admin)">
-            <RouterLink to="/admin/panel" class="nav-link"> ADMIN </RouterLink>
+            <RouterLink to="/admin/panel" class="nav-link"> Amministrazione </RouterLink>
           </li>
           <li class="nav-item" v-if="hasRole(RoleEnum.admin)">
-            <RouterLink to="/admin/shop" class="nav-link"> ADMIN SHOP </RouterLink>
+            <RouterLink to="/admin/shop" class="nav-link"> Amministrazione Shop </RouterLink>
           </li>
           <div v-if="isLoggedIn">
             <li class="nav-item mt-4 d-block d-md-none border-top">
-              <RouterLink to="/profile" class="nav-link"> Profile </RouterLink>
+              <RouterLink to="/profile" class="nav-link"> Profilo </RouterLink>
             </li>
-            <li class="nav-item d-block d-md-none">
-              <RouterLink to="/orders" class="nav-link"> My Orders </RouterLink>
+            <li class="nav-item d-block d-md-none" v-if="!hasRole(RoleEnum.admin)">
+              <RouterLink to="/orders" class="nav-link"> I miei ordini </RouterLink>
             </li>
             <li class="nav-item d-block d-md-none">
               <button class="btn btn-outlined-primary nav-link" @click="onLogout" type="button">
-                Logout <i class="bi bi-box-arrow-left h5"></i>
+                Esci <i class="bi bi-box-arrow-left h5"></i>
               </button>
             </li>
           </div>
@@ -101,7 +101,7 @@ const onLogout = async () => {
           </RouterLink>
         </div>
         <div v-else class="align-items-center d-none d-md-flex">
-          <div class="me-5">
+          <div class="me-5"v-if="!hasRole(RoleEnum.admin)">
             <RouterLink to="/cart" class="nav-link">
               <div>
                 <i class="bi bi-cart-fill h5"></i>
@@ -125,18 +125,18 @@ const onLogout = async () => {
                   to="/profile"
                   class="d-flex justify-content-center text-decoration-none"
                 >
-                  <button class="btn btn-outlined-primary" type="button">Profile</button>
+                  <button class="btn btn-outlined-primary" type="button">Profilo</button>
                 </RouterLink>
               </li>
-              <li class="dropdown-item">
+              <li class="dropdown-item" v-if="!hasRole(RoleEnum.admin)">
                 <RouterLink to="/orders" class="d-flex justify-content-center text-decoration-none">
-                  <button class="btn btn-outlined-primary" type="button">My Orders</button>
+                  <button class="btn btn-outlined-primary" type="button">I miei ordini</button>
                 </RouterLink>
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li class="dropdown-item d-flex justify-content-center text-decoration-none">
                 <button class="btn btn-outlined-primary" @click="onLogout" type="button">
-                  Logout <i class="bi bi-box-arrow-left h5"></i>
+                  Esci <i class="bi bi-box-arrow-left h5"></i>
                 </button>
               </li>
             </ul>

@@ -29,10 +29,10 @@ const onSubmit = async () => {
   try {
     if (work.value?.id) {
       await updateWork(work.value?.id, title.value, company.value, completionDate.value)
-      toast.success('Work updated successfully')
+      toast.success('Lavoro aggiornato correttamente')
     } else {
       await createWork(title.value, company.value, completionDate.value)
-      toast.success('Work created successfully')
+      toast.success('Lavoro creato correttamente')
       title.value = ''
       company.value = ''
       completionDate.value = ''
@@ -49,7 +49,7 @@ const destroyWork = async () => {
       await deleteWork(work.value?.id)
       emitter?.emit('work-saved')
       emitter?.emit('work-deleted')
-      toast.success('Work deleted successfully')
+      toast.success('Lavoro salvato con successo')
     } catch (error: any) {
       toast.error(error.message)
     }
@@ -57,10 +57,10 @@ const destroyWork = async () => {
 }
 </script>
 <template>
-  <h2 class="mt-4" v-if="work?.id">Update work</h2>
-  <h2 class="mt-4" v-else>Create new work</h2>
+  <h2 class="mt-4" v-if="work?.id">Aggiorna lavoro</h2>
+  <h2 class="mt-4" v-else>Aggiungi nuovo lavoro</h2>
   <form @submit.prevent="onSubmit" class="centered-form mt-5">
-    <label for="title" class="form-label">Title</label>
+    <label for="title" class="form-label">Titolo</label>
     <div class="input-group mb-3">
       <input
         v-model="title"
@@ -71,7 +71,7 @@ const destroyWork = async () => {
         aria-describedby="title"
       />
     </div>
-    <label for="company" class="form-label">Company</label>
+    <label for="company" class="form-label">Azienda</label>
     <div class="input-group mb-3">
       <input
         v-model="company"
@@ -82,7 +82,7 @@ const destroyWork = async () => {
         aria-describedby="company"
       />
     </div>
-    <label for="completionDate" class="form-label">Completion Date</label>
+    <label for="completionDate" class="form-label">Data di completamento</label>
     <div class="input-group mb-3">
       <input
         v-model="completionDate"
@@ -93,9 +93,9 @@ const destroyWork = async () => {
         aria-describedby="completionDate"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button type="button" class="btn btn-danger" @click="destroyWork" v-if="work?.id">
-      Delete
+    <button type="submit" class="btn btn-primary mx-1">Salva</button>
+    <button type="button" class="btn btn-danger mx-1" @click="destroyWork" v-if="work?.id">
+      Elimina
     </button>
   </form>
 </template>

@@ -32,10 +32,10 @@ const request = async (endpoint: string, method: string, data?: any) => {
     }
     const response = await fetch(`${import.meta.env.VITE_API_URL}/${endpoint}`, params)
     if (!response.ok && response.status >= 500) {
-      throw new Error('An error occurred, please try again later')
+      throw new Error('Si è verificato un errore, riprovare più tardi')
     }
     return response
   } catch (error) {
-    throw new Error('An error occurred, please try again later')
+    throw new Error('Si è verificato un errore, riprovare più tardi')
   }
 }

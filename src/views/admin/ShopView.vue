@@ -4,7 +4,7 @@ import AllOrders from '@/components/admin/shop/AllOrders.vue'
 import CheckHash from '@/components/admin/shop/CheckHash.vue'
 </script>
 <template>
-  <h1>Shop Management</h1>
+  <h1>Gestione Shop</h1>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button
@@ -17,7 +17,7 @@ import CheckHash from '@/components/admin/shop/CheckHash.vue'
         aria-controls="manage-shopable-images"
         aria-selected="true"
       >
-        Manage shopable images
+        Gestisci immagini
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -31,7 +31,7 @@ import CheckHash from '@/components/admin/shop/CheckHash.vue'
         aria-controls="all-orders"
         aria-selected="true"
       >
-        All orders
+        Ordini
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -45,7 +45,7 @@ import CheckHash from '@/components/admin/shop/CheckHash.vue'
         aria-controls="check-hash"
         aria-selected="true"
       >
-        Check hash
+        Verifica hash
       </button>
     </li>
   </ul>

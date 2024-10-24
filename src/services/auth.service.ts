@@ -7,7 +7,7 @@ export const login = async (username: string, password: string): Promise<AuthUse
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error during login process')
+    throw new Error(body.message ?? 'Errore durante la login')
   }
 }
 
@@ -17,7 +17,7 @@ export const register = async (data: RegistrationUserData) => {
   if (response.ok) {
     return body
   } else {
-    throw new Error(body.message ?? 'Error during the registration process')
+    throw new Error(body.message ?? 'Errore durante la registrazione')
   }
 }
 
@@ -25,7 +25,7 @@ export const logout = async () => {
   const response = await post('api/auth/signout')
   const body = await response.json()
   if (!response.ok) {
-    throw new Error(body.message ?? 'Error during logout process')
+    throw new Error(body.message ?? 'Errore durante la fase di uscita')
   }
 }
 
@@ -33,6 +33,6 @@ export const updatePassword = async (oldPassword: string, newPassword: string) =
   const response = await put('api/auth/updatepwd', { oldPassword, newPassword })
   if (!response.ok) {
     const body = await response.json()
-    throw new Error(body.message ?? 'Error updating the password')
+    throw new Error(body.message ?? 'Si è verificato un errore durante l\'aggiornamento della password')
   }
 }

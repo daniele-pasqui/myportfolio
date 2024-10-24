@@ -18,7 +18,7 @@ import VisibleWorks from '@/components/admin/VisibleWorks.vue'
         aria-controls="new-work"
         aria-selected="true"
       >
-        New Work
+        Nuovo lavoro
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -32,7 +32,7 @@ import VisibleWorks from '@/components/admin/VisibleWorks.vue'
         aria-controls="add-images"
         aria-selected="false"
       >
-        Add Images
+        Aggiungi immagini
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -46,7 +46,7 @@ import VisibleWorks from '@/components/admin/VisibleWorks.vue'
         aria-controls="manage-work"
         aria-selected="false"
       >
-        Manage works
+        Gestisci lavori
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -60,7 +60,7 @@ import VisibleWorks from '@/components/admin/VisibleWorks.vue'
         aria-controls="visible-works"
         aria-selected="false"
       >
-        Visible works
+        Gestisci visibilit&agrave; lavori
       </button>
     </li>
   </ul>

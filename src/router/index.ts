@@ -17,6 +17,15 @@ const beforeEnterIsAdmin = (
   isLoggedIn && hasRole(RoleEnum.admin) ? next() : next('/')
 }
 
+const beforeEnterIsNotAdmin = (
+  to: RouteLocationNormalizedLoadedGeneric,
+  from: RouteLocationNormalizedLoadedGeneric,
+  next: NavigationGuardNext
+) => {
+  const { isLoggedIn, hasRole } = useAuthStore()
+  isLoggedIn && !hasRole(RoleEnum.admin) ? next() : next('/')
+}
+
 const beforeEnterIsLoggedIn = (
   to: RouteLocationNormalizedLoadedGeneric,
   from: RouteLocationNormalizedLoadedGeneric,
@@ -52,19 +61,19 @@ const router = createRouter({
       path: '/gallery',
       name: 'gallery',
       component: () => import('../views/GalleryView.vue'),
-      beforeEnter: beforeEnterIsLoggedIn
+      beforeEnter: beforeEnterIsNotAdmin
     },
     {
       path: '/shop',
       name: 'shop',
       component: () => import('../views/ShopView.vue'),
-      beforeEnter: beforeEnterIsLoggedIn
+      beforeEnter: beforeEnterIsNotAdmin
     },
     {
       path: '/cart',
       name: 'cart',
       component: () => import('../views/CartView.vue'),
-      beforeEnter: beforeEnterIsLoggedIn
+      beforeEnter: beforeEnterIsNotAdmin
     },
     {
       path: '/profile',
@@ -76,7 +85,7 @@ const router = createRouter({
       path: '/orders',
       name: 'orders',
       component: () => import('../views/OrderView.vue'),
-      beforeEnter: beforeEnterIsLoggedIn
+      beforeEnter: beforeEnterIsNotAdmin
     },
     {
       path: '/admin',

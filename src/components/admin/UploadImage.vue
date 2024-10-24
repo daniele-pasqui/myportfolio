@@ -27,7 +27,7 @@ const onSubmit = async () => {
 <template>
   <div>
     <form @submit.prevent="onSubmit" class="centered-form mt-5">
-      <label for="label" class="form-label">Label</label>
+      <label for="label" class="form-label">Etichetta</label>
       <div class="input-group mb-3">
         <input
           v-model="label"
@@ -40,7 +40,7 @@ const onSubmit = async () => {
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">
-          Image
+          Immagine
           <span v-if="imageName"> ({{ imageName }}) </span>
         </label>
         <input class="form-control" type="file" id="image" @change="onFileChanged($event)" />

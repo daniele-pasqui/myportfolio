@@ -10,7 +10,7 @@ const hash = ref('')
 const checkHash = async () => {
   try {
     await verifyHash(hash.value)
-    toast.success('Hash is valid')
+    toast.success('L\'hash inserito è valido')
   } catch (error: any) {
     toast.error(error.message)
   }
@@ -18,7 +18,7 @@ const checkHash = async () => {
 </script>
 <template>
   <div class="mt-4">
-    <h2>Check hash</h2>
+    <h2>Verifica hash</h2>
     <label for="hash" class="form-label">Hash</label>
     <div class="input-group mb-3">
       <input
@@ -30,6 +30,6 @@ const checkHash = async () => {
         aria-describedby="hash"
       />
     </div>
-    <button type="button" @click="checkHash" class="btn btn-primary">Check hash</button>
+    <button type="button" @click="checkHash" class="btn btn-primary">Verifica</button>
   </div>
 </template>

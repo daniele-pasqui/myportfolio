@@ -34,7 +34,7 @@ const updatePwd = async () => {
   if (oldPassword.value && newPassword.value) {
     try {
       await updatePassword(oldPassword.value, newPassword.value)
-      toast.success('Password updated successfully')
+      toast.success('Password aggiornata correttamente')
     } catch (error: any) {
       toast.error(error.message)
     }
@@ -42,11 +42,11 @@ const updatePwd = async () => {
 }
 </script>
 <template>
-  <h1>Profile</h1>
+  <h1>Profilo</h1>
   <div class="mt-5 d-flex justify-content-around flex-wrap">
     <div class="mb-5">
       <h2>Info</h2>
-      <label for="name" class="form-label">Name</label>
+      <label for="name" class="form-label">Nome</label>
       <div class="input-group mb-3">
         <input
           v-model="name"
@@ -57,7 +57,7 @@ const updatePwd = async () => {
           aria-describedby="name"
         />
       </div>
-      <label for="surname" class="form-label">Surname</label>
+      <label for="surname" class="form-label">Cognome</label>
       <div class="input-group mb-3">
         <input
           v-model="surname"
@@ -79,11 +79,11 @@ const updatePwd = async () => {
           aria-describedby="email"
         />
       </div>
-      <button type="button" @click="saveUserInfo" class="btn btn-primary">Save</button>
+      <button type="button" @click="saveUserInfo" class="btn btn-primary">Salva</button>
     </div>
     <div class="mb-5">
       <h2>Password</h2>
-      <label for="old-password" class="form-label">Old password</label>
+      <label for="old-password" class="form-label">Vecchia password</label>
       <div class="input-group mb-3">
         <input
           v-model="oldPassword"
@@ -94,7 +94,7 @@ const updatePwd = async () => {
           aria-describedby="old-password"
         />
       </div>
-      <label for="new-password" class="form-label">New password</label>
+      <label for="new-password" class="form-label">Nuova password</label>
       <div class="input-group mb-3">
         <input
           v-model="newPassword"
@@ -105,7 +105,7 @@ const updatePwd = async () => {
           aria-describedby="new-password"
         />
       </div>
-      <button type="button" @click="updatePwd" class="btn btn-primary">Save</button>
+      <button type="button" @click="updatePwd" class="btn btn-primary">Salva</button>
     </div>
   </div>
 </template>

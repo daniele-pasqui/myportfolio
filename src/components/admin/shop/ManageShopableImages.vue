@@ -22,17 +22,17 @@ const updateImage = (id: number) => {
 
 const deleteImage = async (id: number) => {
   Swal.fire({
-    title: 'Are you sure?',
-    text: 'This action cannot be undone!',
+    title: 'Sicuro di voler continuare?',
+    text: 'Non potrai tornare indietro!',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'Continue',
-    cancelButtonText: 'Cancel'
+    confirmButtonText: 'Continua',
+    cancelButtonText: 'Annulla'
   }).then(async (result) => {
     if (result.isConfirmed) {
       await deleteShopableImage(id)
       await loadAllShopableImages()
-      toast.success('Image deleted successfully')
+      toast.success('Immagine eliminata con successo')
     }
   })
 }
@@ -59,16 +59,18 @@ onMounted(() => {
 </script>
 <template>
   <h2 class="mb-3 d-flex mt-4">
-    Images
+    Immagini
     <button class="btn btn-primary ms-auto" @click="uploadNewImage()" v-if="images.length > 0">
       <i class="bi bi-plus"></i>
     </button>
   </h2>
-  <div :key="key" class="row mt-5">
-    <div v-if="images.length > 0">
-      <div v-for="shopable in images" :key="shopable.id" class="col-md-2 px-4">
+  <div :key="key">
+    <div v-if="images.length > 0" class="row mt-5">
+      <div v-for="shopable in images" :key="shopable.id" class="col-md-4 px-4">
         <div class="card">
-          <ThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
+          <div class="image-container">
+            <ThumbImage :id="shopable.id" :label="shopable.label" class="card-img-top" />
+          </div>
           <div class="card-body">
             <h5 class="card-title">{{ shopable.label }} &euro; {{ shopable.price }}</h5>
             <button class="btn btn-primary mx-1" @click="updateImage(shopable.id)">
@@ -83,9 +85,9 @@ onMounted(() => {
     </div>
     <div v-else class="d-flex align-items-center flex-column pt-5">
       <i class="bi bi-images h1"></i>
-      <h3>No images found</h3>
+      <h3>Nessuna immagine trovata</h3>
       <button class="btn btn-primary mt-3" @click="uploadNewImage()">
-        Upload your first image
+        Carica la tua prima immagine
       </button>
     </div>
   </div>
@@ -120,5 +122,14 @@ onMounted(() => {
   padding: 20px 40px;
   border-radius: 10px;
   cursor: default;
+}
+.image-container {
+  height: 200px;
+  text-align: center;
+}
+.image-container img {
+  max-height: 200px;
+  height: auto;
+  max-width: fit-content;
 }
 </style>
